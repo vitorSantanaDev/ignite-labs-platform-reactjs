@@ -1,7 +1,9 @@
 import React from "react";
 
+import RoutesApp from "./routes/Routes.routes";
+
 function App() {
-  return <h1>React.JS Application</h1>;
+  return <RoutesApp />;
 }
 
 export default App;
