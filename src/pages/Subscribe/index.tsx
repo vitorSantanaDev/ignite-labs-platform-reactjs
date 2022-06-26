@@ -2,7 +2,7 @@ import { gql, useMutation } from "@apollo/client";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { IllustrationReactLogo, Logo } from "../../components";
+import { Footer, IllustrationReactLogo, Logo } from "../../components";
 
 import { APP_TEXT } from "../../util/appText";
 import { RoutesTypeEnum } from "../../routes/enum";
@@ -91,6 +91,7 @@ export default function Subscribe() {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
