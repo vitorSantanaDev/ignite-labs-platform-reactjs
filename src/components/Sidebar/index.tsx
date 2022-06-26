@@ -1,35 +1,12 @@
-import { gql, useQuery } from "@apollo/client";
+import { useGetLessonsQuery } from "../../graphql/generated";
 
 import { APP_TEXT } from "../../util/appText";
 
 import LessonCard from "../LessonCard";
-import { ClassroomTypeEnum } from "../types";
-
-const GET_LESSONS_QUERY = gql`
-  query {
-    lessons(orderBy: availableAt_ASC, stage: PUBLISHED) {
-      id
-      lessonType
-      availableAt
-      title
-      slug
-    }
-  }
-`;
-
-interface IGetLessonsQueryResponse {
-  lessons: {
-    id: string;
-    title: string;
-    slug: string;
-    availableAt: string;
-    lessonType: ClassroomTypeEnum;
-  }[];
-}
 
 export default function Sidebar() {
-  const { data: lessonsData } =
-    useQuery<IGetLessonsQueryResponse>(GET_LESSONS_QUERY);
+  const { data: lessonsData } = useGetLessonsQuery();
+
   return (
     <aside className="w-[348px] bg-gray-700 p-6 border-l border-gray-600">
       <span className="font-bold text-2xl pb-6 mb-6 border-b border-gray-500 block">
@@ -40,8 +17,8 @@ export default function Sidebar() {
           ({ id, title, availableAt, lessonType, slug }) => (
             <LessonCard
               key={id}
-              slug={slug}
               title={title}
+              slug={slug}
               lessonType={lessonType}
               availableAt={new Date(availableAt)}
             />
